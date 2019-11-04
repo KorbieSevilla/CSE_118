@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "979966414076",
+    "firebase_url": "https://rentadriveway-8ccbf.firebaseio.com",
+    "project_id": "rentadriveway-8ccbf",
+    "storage_bucket": "rentadriveway-8ccbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979966414076:android:6471744c46fcc51c455b79",
+        "android_client_info": {
+          "package_name": "com.zybooks.rentadrivemobile2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979966414076-2lbetpdlr2tkpp6irlljrsn3kq5l3p8l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zybooks.rentadrivemobile2",
+            "certificate_hash": "34598b3fdf0da5476e2509ecebf64fff3b518b23"
+          }
+        },
+        {
+          "client_id": "979966414076-vqgfhvgmobar4fonea2mmaff9tm6649a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRfTp6cTC10HJu0AfJbWgI83w2BV3s06Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979966414076-vqgfhvgmobar4fonea2mmaff9tm6649a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
