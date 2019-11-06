@@ -41,7 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Santa Cruz and move the camera
         LatLng santaCruz = new LatLng(36.9741 , -122.0308);
-        mMap.addMarker(new MarkerOptions().position(santaCruz).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(santaCruz).title("Marker in Santa Cruz"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
     }
 }
