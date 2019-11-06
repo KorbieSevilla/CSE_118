@@ -3,6 +3,7 @@ package com.zybooks.rentadrivemobile2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,8 @@ public class Register extends AppCompatActivity {
     FirebaseAuth uAuth;
     private ProgressBar progressBar;
 
+    // Button Testing for Google Map
+    Button Map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,16 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 registerUser();
+            }
+        });
+
+
+        Map = findViewById(R.id.Map);
+        Map.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent addBook = new Intent(Register.this, MapsActivity.class);
+                startActivity(addBook);
             }
         });
     }
