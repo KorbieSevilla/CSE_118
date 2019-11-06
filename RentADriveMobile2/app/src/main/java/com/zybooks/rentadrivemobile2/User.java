@@ -3,7 +3,7 @@ package com.zybooks.rentadrivemobile2;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    String userName, userEmail, userPhone;
+    public String userName, userEmail, userPhone;
 
     public User(){
 
