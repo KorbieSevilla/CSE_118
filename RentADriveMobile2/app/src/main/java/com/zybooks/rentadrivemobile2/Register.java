@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
     EditText name, password, email, phone;
-    Button register;
+    Button registerPoster, registerRenter;
     FirebaseAuth uAuth;
     private ProgressBar progressBar;
 
@@ -35,27 +35,28 @@ public class Register extends AppCompatActivity {
         password = findViewById(R.id.password);
         email = findViewById(R.id.email);
         phone = findViewById(R.id.phone);
-        register = findViewById(R.id.save);
+        registerPoster = findViewById(R.id.registerPoster);
+        registerRenter = findViewById(R.id.registerRenter);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         uAuth = FirebaseAuth.getInstance();
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registerUser();
-            }
-        });
+//        registerPoster.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ();
+//            }
+//        });
 
 
-        Map = findViewById(R.id.Map);
-        Map.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent addBook = new Intent(Register.this, MapsActivity.class);
-                startActivity(addBook);
-            }
-        });
+//        Map = findViewById(R.id.Map);
+//        Map.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                Intent addBook = new Intent(Register.this, MapsActivity.class);
+//                startActivity(addBook);
+//            }
+//        });
     }
 
 //    @Override
