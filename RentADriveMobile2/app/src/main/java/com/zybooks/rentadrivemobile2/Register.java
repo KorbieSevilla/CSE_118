@@ -84,6 +84,10 @@ public class Register extends AppCompatActivity {
             Toast.makeText(this, "Please fill in all fields properly", Toast.LENGTH_LONG).show();
         }
 
+        if(uPhone.length() < 9 || uPhone.length() > 9) {
+            Toast.makeText(this, "Please enter your 9 digit phone number.", Toast.LENGTH_LONG).show();
+        }
+
         progressBar.setVisibility(View.VISIBLE);
         uAuth.createUserWithEmailAndPassword(uEmail, uPW).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
