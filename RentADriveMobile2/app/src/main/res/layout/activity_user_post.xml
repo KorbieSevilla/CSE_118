@@ -21,18 +21,17 @@
 
     <EditText
         android:id="@+id/description"
-        android:layout_width="405dp"
-        android:layout_height="157dp"
+        android:layout_width="407dp"
+        android:layout_height="69dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Please enter a description"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintVertical_bias="0.297" />
 
     <EditText
         android:id="@+id/price"
@@ -44,7 +43,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.482" />
 
     <Button
         android:id="@+id/post"
