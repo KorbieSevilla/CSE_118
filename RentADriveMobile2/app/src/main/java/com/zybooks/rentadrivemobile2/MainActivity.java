@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Login Succeeded", Toast.LENGTH_LONG).show();
                     }
                 });
+
+                startActivity((new Intent(MainActivity.this, MapsActivity.class)));
             }
         });
 
