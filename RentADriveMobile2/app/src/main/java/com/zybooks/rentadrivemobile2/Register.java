@@ -84,8 +84,9 @@ public class Register extends AppCompatActivity {
             return;
         }
 
-        if(uPhone.length() != 9) {
-            Toast.makeText(this, "Please enter your 9 digit phone number.", Toast.LENGTH_LONG).show();
+        if(uPhone.length() != 10) {
+            Toast.makeText(this, "Please enter your 10 digit phone number.", Toast.LENGTH_LONG).show();
+            phone.setError("Please enter 10 digit phone number");
             return;
         }
 
