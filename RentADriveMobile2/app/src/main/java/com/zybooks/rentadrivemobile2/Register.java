@@ -44,6 +44,7 @@ public class Register extends AppCompatActivity {
         registerRenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                registerUser();
                 startActivity((new Intent(Register.this, MapsActivity.class)));
             }
         });
@@ -51,6 +52,7 @@ public class Register extends AppCompatActivity {
         registerPoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                registerUser();
                 startActivity((new Intent(Register.this, UserPostActivity.class )));
             }
         });
@@ -79,10 +81,12 @@ public class Register extends AppCompatActivity {
 
         if(uName.isEmpty() || uEmail.isEmpty() || uPhone.isEmpty()){
             Toast.makeText(this, "Please fill in all fields properly", Toast.LENGTH_LONG).show();
+            return;
         }
 
-        if(uPhone.length() < 9 || uPhone.length() > 9) {
+        if(uPhone.length() != 9) {
             Toast.makeText(this, "Please enter your 9 digit phone number.", Toast.LENGTH_LONG).show();
+            return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
@@ -102,7 +106,6 @@ public class Register extends AppCompatActivity {
                                 //finish();
                             }else{
                                 Toast.makeText(Register.this, "User failed to be added to database", Toast.LENGTH_LONG).show();
-
                             }
                         }
                     });

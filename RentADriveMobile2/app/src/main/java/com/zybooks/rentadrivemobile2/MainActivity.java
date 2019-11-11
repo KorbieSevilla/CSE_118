@@ -50,11 +50,15 @@ public class MainActivity extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(uEmail,pw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(MainActivity.this, "Login Succeeded", Toast.LENGTH_LONG).show();
+                        if (task.isSuccessful()){
+                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
+                            startActivity((new Intent(MainActivity.this, MapsActivity.class)));
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this, "Login Failed. Check email or password", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
-
-                startActivity((new Intent(MainActivity.this, MapsActivity.class)));
             }
         });
 
