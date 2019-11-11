@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap, zoomLevel;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +38,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        float zoomLevel = 14.0f;
+        //float zoomLevel = 14.0f;
 
 
         // Add a marker in Santa Cruz and move the camera
         LatLng santaCruz = new LatLng(36.9741 , -122.0308);
         mMap.addMarker(new MarkerOptions().position(santaCruz).title("Marker in Santa Cruz"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santaCruz, zoomLevel));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santaCruz, zoomLevel));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
+
     }
 }
