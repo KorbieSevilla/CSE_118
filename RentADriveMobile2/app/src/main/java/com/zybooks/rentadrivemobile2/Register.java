@@ -48,19 +48,12 @@ public class Register extends AppCompatActivity {
             }
         });
 
-
-//        Map = findViewById(R.id.Map);
-//        Map.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Intent addBook = new Intent(Register.this, MapsActivity.class);
-//                startActivity(addBook);
-//            }
-//        });
-
-
-
-
+        registerPoster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity((new Intent(Register.this, UserPostActivity.class )));
+            }
+        });
     }
 
 //    @Override
