@@ -41,12 +41,12 @@ public class Register extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         uAuth = FirebaseAuth.getInstance();
 
-//        registerPoster.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ();
-//            }
-//        });
+        registerRenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity((new Intent(Register.this, MapsActivity.class)));
+            }
+        });
 
 
 //        Map = findViewById(R.id.Map);
@@ -57,6 +57,10 @@ public class Register extends AppCompatActivity {
 //                startActivity(addBook);
 //            }
 //        });
+
+
+
+
     }
 
 //    @Override
