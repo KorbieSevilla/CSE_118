@@ -92,7 +92,7 @@ public class Register extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Toast.makeText(Register.this, "Auth properly passed", Toast.LENGTH_LONG).show();
                 if(task.isSuccessful()){
-                    User user = new User(uName, uEmail, uPhone);
+                    User user = new User(uName, uEmail, uPhone, null);
                     FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

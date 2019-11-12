@@ -10,12 +10,7 @@ public class User implements Serializable {
     public User(){
 
     }
-
-    public User(String name, String email, String phone){
-        this.userName = name;
-        this.userEmail = email;
-        this.userPhone = phone;
-    }
+    
 
     public User(String name, String email, String phone, ArrayList listings){
         this.userName = name;
