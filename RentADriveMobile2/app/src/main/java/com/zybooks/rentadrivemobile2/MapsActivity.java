@@ -38,14 +38,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        //float zoomLevel = 14.0f;
+        float zoomLevel = 14.0f;
 
 
         // Add a marker in Santa Cruz and move the camera
-        LatLng santaCruz = new LatLng(36.9741 , -122.0308);
-        mMap.addMarker(new MarkerOptions().position(santaCruz).title("Marker in Santa Cruz"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(santaCruz, zoomLevel));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
+        LatLng Tosca = new LatLng(36.980560 , -122.060204);
+        mMap.addMarker(new MarkerOptions().position(Tosca).title("Marker in 159 Tosca Terrace, Santa Cruz"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Tosca, zoomLevel));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
 
     }
 }
