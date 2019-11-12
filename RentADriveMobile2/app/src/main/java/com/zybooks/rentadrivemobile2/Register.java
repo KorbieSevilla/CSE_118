@@ -58,15 +58,6 @@ public class Register extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    protected void onStart(){
-//        super.onStart();
-//
-////        if(uAuth.getCurrentUser() != null){
-////            //go to different activity
-////        }
-//    }
-
     private void registerUser(){
         final String uName = name.getText().toString().trim();
         final String uPW = password.getText().toString().trim();
