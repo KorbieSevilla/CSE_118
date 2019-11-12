@@ -44,30 +44,26 @@ public class Register extends AppCompatActivity {
         registerRenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerUser();
-                startActivity((new Intent(Register.this, MapsActivity.class)));
+                boolean value = registerUser();
+                if (value == true) {
+                    startActivity((new Intent(Register.this, MapsActivity.class)));
+                }
             }
         });
 
         registerPoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerUser();
-                startActivity((new Intent(Register.this, UserPostActivity.class )));
+                boolean value = registerUser();
+                if (value == true) {
+                    startActivity((new Intent(Register.this, UserPostActivity.class)));
+                }
             }
         });
     }
 
-//    @Override
-//    protected void onStart(){
-//        super.onStart();
-//
-////        if(uAuth.getCurrentUser() != null){
-////            //go to different activity
-////        }
-//    }
 
-    private void registerUser(){
+    private boolean registerUser(){
         final String uName = name.getText().toString().trim();
         final String uPW = password.getText().toString().trim();
         final String uEmail = email.getText().toString().trim();
@@ -76,18 +72,18 @@ public class Register extends AppCompatActivity {
         if(uPW.isEmpty() || uPW.length() < 6){
             password.setError("Please input a password of length at least 6 characters");
             password.requestFocus();
-            return;
+            return false;
         }
 
         if(uName.isEmpty() || uEmail.isEmpty() || uPhone.isEmpty()){
             Toast.makeText(this, "Please fill in all fields properly", Toast.LENGTH_LONG).show();
-            return;
+            return false;
         }
 
         if(uPhone.length() != 10) {
             Toast.makeText(this, "Please enter your 10 digit phone number.", Toast.LENGTH_LONG).show();
             phone.setError("Please enter 10 digit phone number");
-            return;
+            return false;
         }
 
         progressBar.setVisibility(View.VISIBLE);
@@ -115,6 +111,7 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
+        return true;
     }
 
 }
