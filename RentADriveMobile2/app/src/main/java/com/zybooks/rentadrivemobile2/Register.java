@@ -23,7 +23,7 @@ public class Register extends AppCompatActivity {
     FirebaseAuth uAuth;
     private ProgressBar progressBar;
     static boolean registerComplete;
-
+    //testver
     // Button Testing for Google Map
     Button Map;
 
