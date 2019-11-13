@@ -38,7 +38,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        float zoomLevel = 14.0f;
+        float zoomLevel = 17.0f;
 
 
         // Add a marker in Santa Cruz and move the camera
