@@ -22,6 +22,7 @@ public class Register extends AppCompatActivity {
     Button registerPoster, registerRenter;
     FirebaseAuth uAuth;
     private ProgressBar progressBar;
+    static boolean registerComplete;
 
     // Button Testing for Google Map
     Button Map;
@@ -45,8 +46,8 @@ public class Register extends AppCompatActivity {
         registerRenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean value = registerUser();
-                if (value == true) {
+                registerUser();
+                if (registerComplete == true) {
                     startActivity((new Intent(Register.this, MapsActivity.class)));
                 }
             }
@@ -55,8 +56,8 @@ public class Register extends AppCompatActivity {
         registerPoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean value = registerUser();
-                if (value == true) {
+                registerUser();
+                if (registerComplete == true) {
                     startActivity((new Intent(Register.this, UserPostActivity.class)));
                 }
             }
@@ -64,7 +65,8 @@ public class Register extends AppCompatActivity {
     }
 
 
-    private boolean registerUser(){
+    private void registerUser(){
+        registerComplete = false;
         final String uName = name.getText().toString().trim();
         final String uPW = password.getText().toString().trim();
         final String uEmail = email.getText().toString().trim();
@@ -73,18 +75,19 @@ public class Register extends AppCompatActivity {
         if(uPW.isEmpty() || uPW.length() < 6){
             password.setError("Please input a password of length at least 6 characters");
             password.requestFocus();
-            return false;
+            registerComplete =  false;
         }
+
 
         if(uName.isEmpty() || uEmail.isEmpty() || uPhone.isEmpty()){
             Toast.makeText(this, "Please fill in all fields properly", Toast.LENGTH_LONG).show();
-            return false;
+            registerComplete = false;
         }
 
         if(uPhone.length() != 10) {
             Toast.makeText(this, "Please enter your 10 digit phone number.", Toast.LENGTH_LONG).show();
             phone.setError("Please enter 10 digit phone number");
-            return false;
+            registerComplete = false;
         }
 
         progressBar.setVisibility(View.VISIBLE);
@@ -101,9 +104,11 @@ public class Register extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
                             if(task.isSuccessful()){
                                 Toast.makeText(Register.this, "User added successfully!", Toast.LENGTH_LONG).show();
+                                registerComplete =  true;
                                 //finish();
                             }else{
                                 Toast.makeText(Register.this, "User failed to be added to database", Toast.LENGTH_LONG).show();
+                                registerComplete = false;
                             }
                         }
                     });
@@ -112,7 +117,6 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
-        return true;
     }
 
 }
