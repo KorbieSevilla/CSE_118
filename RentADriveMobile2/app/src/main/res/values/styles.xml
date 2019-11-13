@@ -17,4 +17,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+<!-- Coloring code for the dark theme-->
+    <style name="DarkTheme" parent="AppTheme">
+        <item name="textColor">#ffffff</item>
+        <item name="metaTextColor">#aeaeae</item>
+        <item name="bgColor">#797272</item>
+        <item name="buttonColor">#febe03</item>
+        <item name="EditTextLine">#000000</item>
+    </style>
+
 </resources>
