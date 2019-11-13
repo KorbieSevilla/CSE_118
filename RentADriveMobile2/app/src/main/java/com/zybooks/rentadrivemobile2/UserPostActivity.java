@@ -13,6 +13,7 @@ public class UserPostActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.DarkTheme);
         setContentView(R.layout.activity_user_post);
         post = findViewById(R.id.post);
         post.setOnClickListener(new View.OnClickListener() {

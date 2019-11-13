@@ -20,10 +20,10 @@
 
 <!-- Coloring code for the dark theme-->
     <style name="DarkTheme" parent="AppTheme">
-        <item name="textColor">#ffffff</item>
-        <item name="metaTextColor">#000000</item>
-        <item name="bgColor">#c4cace</item>
-        <item name="buttonColor">#febe03</item>
+        <item name="textColor">#000000</item>
+        <item name="metaTextColor">#9a9a9a</item>
+        <item name="bgColor">#ffffff</item>
+        <item name="buttonColor">#C85E63</item>
         <item name="EditTextLine">#000000</item>
     </style>
 
