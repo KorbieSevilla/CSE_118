@@ -11,7 +11,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-//This is a test comment for git 
+//This is a test comment for git
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
