@@ -45,10 +45,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         // Add a marker in Santa Cruz and move the camera
-        LatLng Tosca = new LatLng(36.980560 , -122.060204);
-        mMap.addMarker(new MarkerOptions().position(Tosca).title("Marker in 159 Tosca Terrace, Santa Cruz"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Tosca, zoomLevel));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
+        LatLng Tosca = new LatLng(36.980560, -122.060204);
+       mMap.addMarker(new MarkerOptions()
+                .position(Tosca)
+                .title("Marker in 159 Tosca Terrace, Santa Cruz")
+                .snippet("Population: 7 people"));
 
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Tosca, zoomLevel));
+
+
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
     }
 }

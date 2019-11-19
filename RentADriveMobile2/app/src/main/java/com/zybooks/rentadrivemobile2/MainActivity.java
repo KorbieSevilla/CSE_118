@@ -20,18 +20,25 @@ public class MainActivity extends AppCompatActivity {
     Button login, register;
     FirebaseAuth fAuth;
 
+
+    // MAPS TESTING PURPOSES
+    Button map;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.DarkTheme);
         setContentView(R.layout.activity_main);
 
-
-
         email = findViewById(R.id.loginUser);
         password = findViewById(R.id.loginPass);
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
+
+
+        // MAPS TESTING PURPOSES
+        map = findViewById(R.id.map);
+
 
         fAuth = FirebaseAuth.getInstance();
 
@@ -71,5 +78,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Register.class));
             }
         });
+
+        // MAPS TESTING
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
+            }
+        });
+
+
     }
 }
