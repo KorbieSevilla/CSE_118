@@ -22,9 +22,23 @@ public class Register extends AppCompatActivity {
     Button registerPoster, registerRenter;
     FirebaseAuth uAuth;
     private ProgressBar progressBar;
+    static boolean registerComplete;
 
+    static void setBooleanTrue(){
+        Register.registerComplete = true;
+    }
+
+    static void setBooleanFalse(){
+        Register.registerComplete = false;
+    }
+
+    //testver
     // Button Testing for Google Map
     Button Map;
+
+    static private void setBoolean(boolean b){
+        registerComplete=(b);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +59,8 @@ public class Register extends AppCompatActivity {
         registerRenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean value = registerUser();
-                if (value == true) {
+                registerUser();
+                if (registerComplete == true) {
                     startActivity((new Intent(Register.this, MapsActivity.class)));
                 }
             }
@@ -55,16 +69,20 @@ public class Register extends AppCompatActivity {
         registerPoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean value = registerUser();
-                if (value == true) {
+                registerUser();
+                Toast.makeText(Register.this, "IM HERE " + Register.registerComplete, Toast.LENGTH_LONG);
+
+                if (registerComplete == true) {
                     startActivity((new Intent(Register.this, UserPostActivity.class)));
+                }else{
+                    Toast.makeText(Register.this, "Did not make it to next activity " + Register.registerComplete, Toast.LENGTH_LONG);
                 }
             }
         });
     }
 
-
-    private boolean registerUser(){
+    private void registerUser(){
+        registerComplete = true;
         final String uName = name.getText().toString().trim();
         final String uPW = password.getText().toString().trim();
         final String uEmail = email.getText().toString().trim();
@@ -73,18 +91,25 @@ public class Register extends AppCompatActivity {
         if(uPW.isEmpty() || uPW.length() < 6){
             password.setError("Please input a password of length at least 6 characters");
             password.requestFocus();
-            return false;
+            //registerComplete =  false;
+            Register.setBooleanFalse();
+            return;
         }
+
 
         if(uName.isEmpty() || uEmail.isEmpty() || uPhone.isEmpty()){
             Toast.makeText(this, "Please fill in all fields properly", Toast.LENGTH_LONG).show();
-            return false;
+//            registerComplete = false;
+            Register.setBooleanFalse();
+            return;
         }
 
         if(uPhone.length() != 10) {
             Toast.makeText(this, "Please enter your 10 digit phone number.", Toast.LENGTH_LONG).show();
             phone.setError("Please enter 10 digit phone number");
-            return false;
+//            registerComplete = false;
+            Register.setBooleanFalse();
+            return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
@@ -101,9 +126,12 @@ public class Register extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
                             if(task.isSuccessful()){
                                 Toast.makeText(Register.this, "User added successfully!", Toast.LENGTH_LONG).show();
+                                Register.setBooleanTrue();
                                 //finish();
                             }else{
                                 Toast.makeText(Register.this, "User failed to be added to database", Toast.LENGTH_LONG).show();
+//                                Register.registerComplete = false;
+                                Register.setBooleanFalse();
                             }
                         }
                     });
@@ -112,7 +140,6 @@ public class Register extends AppCompatActivity {
                 }
             }
         });
-        return true;
     }
 
 }
