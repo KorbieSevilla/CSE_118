@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/activity_maps">
+    </include>
+
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"
