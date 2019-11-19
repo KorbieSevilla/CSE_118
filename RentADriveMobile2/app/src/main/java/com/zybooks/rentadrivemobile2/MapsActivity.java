@@ -44,6 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         float zoomLevel = 17.0f;
 
 
+        
         // Add a marker in Santa Cruz and move the camera
         LatLng Tosca = new LatLng(36.980560, -122.060204);
        mMap.addMarker(new MarkerOptions()
