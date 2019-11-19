@@ -106,7 +106,7 @@ public class Register extends AppCompatActivity {
                                 if(activity.equals("post")){
                                     startActivity(new Intent(Register.this, UserPostActivity.class));
                                 }else if(activity.equals("rent")){
-                                    startActivity(new Intent(Register.this, MapsActivity.class));
+                                    startActivity(new Intent(Register.this, NavigationActivity.class));
                                 }
                             }else{
                                 Toast.makeText(Register.this, "User failed to be added to database", Toast.LENGTH_LONG).show();
