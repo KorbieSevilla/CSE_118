@@ -117,6 +117,10 @@ public class Register extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Toast.makeText(Register.this, "Auth properly passed", Toast.LENGTH_LONG).show();
+
+
+
+
                 if(task.isSuccessful()){
                     User user = new User(uName, uEmail, uPhone, null);
                     FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -127,6 +131,13 @@ public class Register extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 Toast.makeText(Register.this, "User added successfully!", Toast.LENGTH_LONG).show();
                                 Register.setBooleanTrue();
+
+//                                if ("RAP".equals(logic)) {
+//
+//                                } else {
+//
+//                                }
+
                                 //finish();
                             }else{
                                 Toast.makeText(Register.this, "User failed to be added to database", Toast.LENGTH_LONG).show();
