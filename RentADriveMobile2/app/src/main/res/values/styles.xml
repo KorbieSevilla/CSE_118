@@ -18,7 +18,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-<!-- Coloring code for the dark theme-->
+    <!-- Coloring code for the dark theme-->
     <style name="DarkTheme" parent="AppTheme">
         <item name="textColor">#000000</item>
         <item name="metaTextColor">#9a9a9a</item>
