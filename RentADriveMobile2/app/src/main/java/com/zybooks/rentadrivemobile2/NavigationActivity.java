@@ -14,6 +14,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -21,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -31,8 +38,35 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        NavigationView mNavigationView = findViewById(R.id.nav_view);
+        View headerView = mNavigationView.getHeaderView(0);
         setSupportActionBar(toolbar);
         FloatingActionButton postButton = findViewById(R.id.postButton);
+        final TextView navUserName = (TextView) headerView.findViewById(R.id.nav_username);
+        TextView navUserEmail = (TextView) headerView.findViewById(R.id.nav_userEmail);
+
+        //get reference to firebase dataBase
+        //get Users email and firebaseAuth userID
+        String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        //get Username from firebase realtime
+        DatabaseReference userNameRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("userName");
+        userNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String userName = dataSnapshot.getValue(String.class);
+                navUserName.setText(userName);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        navUserEmail.setText(userEmail);
+
+        //Post Button goes to the userPostActivity page
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,6 +75,7 @@ public class NavigationActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
