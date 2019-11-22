@@ -2,9 +2,10 @@ package com.zybooks.rentadrivemobile2;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Posting {
+public class Posting implements Serializable {
     public List<LatLng> addresses;
     public String description;
 

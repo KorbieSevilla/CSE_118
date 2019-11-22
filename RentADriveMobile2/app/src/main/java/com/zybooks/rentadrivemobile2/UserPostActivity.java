@@ -68,7 +68,7 @@ public class UserPostActivity extends AppCompatActivity {
 
     private void addLocationToDB(String addr) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference();
+        DatabaseReference ref = db.getReference("postings");
         String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         ArrayList<LatLng> addresses = new ArrayList<>();
         List<LatLng> locations;
@@ -83,7 +83,7 @@ public class UserPostActivity extends AppCompatActivity {
         locations = addresses;
         Posting p = new Posting(locations, description.getText().toString());
 
-        ref.child("postings").child(name.getText().toString()).setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
+        ref.child(name.getText().toString()).setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
