@@ -5,8 +5,8 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
 public class Posting {
-    List<LatLng> addresses;
-    String description;
+    public List<LatLng> addresses;
+    public String description;
 
     public Posting(List<LatLng> addressList, String desc){
         this.addresses = addressList;
