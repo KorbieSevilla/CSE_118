@@ -23,9 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 public class UserPostActivity extends AppCompatActivity {
     EditText name, address, description, price;
@@ -68,7 +70,7 @@ public class UserPostActivity extends AppCompatActivity {
 
     private void addLocationToDB(String addr) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference("postings");
+        DatabaseReference ref = db.getReference();
         String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         ArrayList<LatLng> addresses = new ArrayList<>();
         List<LatLng> locations;
@@ -82,8 +84,9 @@ public class UserPostActivity extends AppCompatActivity {
 
         locations = addresses;
         Posting p = new Posting(locations, description.getText().toString());
-
-        ref.child(name.getText().toString()).setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
+        Map<String, Posting> postings = new HashMap<>();
+        postings.put(name.getText().toString(), p);
+        ref.child("postings").setValue(postings).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
