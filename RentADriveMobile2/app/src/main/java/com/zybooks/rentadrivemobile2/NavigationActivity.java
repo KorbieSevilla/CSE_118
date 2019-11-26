@@ -1,6 +1,8 @@
 package com.zybooks.rentadrivemobile2;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,7 +29,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+import javax.annotation.Nullable;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -44,6 +52,8 @@ public class NavigationActivity extends AppCompatActivity {
         FloatingActionButton postButton = findViewById(R.id.postButton);
         final TextView navUserName = (TextView) headerView.findViewById(R.id.nav_username);
         TextView navUserEmail = (TextView) headerView.findViewById(R.id.nav_userEmail);
+        ImageView profilePic = (ImageView) headerView.findViewById(R.id.imageView);
+
 
         //get reference to firebase dataBase
         //get Users email and firebaseAuth userID
@@ -73,6 +83,19 @@ public class NavigationActivity extends AppCompatActivity {
                 startActivity(new Intent(NavigationActivity.this, UserPostActivity.class));
             }
         });
+
+        //userProfile changin
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+
+                startActivityForResult(Intent.createChooser(intent, "Pick an image"), 1);
+
+            }
+        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -88,6 +111,29 @@ public class NavigationActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 1) {
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            NavigationView mNavigationView = findViewById(R.id.nav_view);
+            View headerView = mNavigationView.getHeaderView(0);
+            ImageView imageView = headerView.findViewById(R.id.imageView);
+
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(data.getData());
+
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
+                imageView.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
