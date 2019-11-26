@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class UserPostActivity extends AppCompatActivity {
     EditText name, address, description, price;
-    Button post, addImage;
+    Button post, pickImage, addImage;
     Uri filepath;
     private final int PICK_IMAGE_REQUEST = 71;
     FirebaseStorage storage;
@@ -56,10 +56,25 @@ public class UserPostActivity extends AppCompatActivity {
         address = findViewById(R.id.address);
         description = findViewById(R.id.description);
         price = findViewById(R.id.price);
+        pickImage = findViewById(R.id.chooseImage);
         addImage = findViewById(R.id.uploadImage);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
+
+        pickImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chooseImage();
+            }
+        });
+
+        addImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadImage();
+            }
+        });
 
         post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,11 +149,6 @@ public class UserPostActivity extends AppCompatActivity {
         }
 
         return p1;
-    }
-
-    public void chooseAndUploadImage(View view) {
-        chooseImage();
-        uploadImage();
     }
 
     private void chooseImage() {
