@@ -86,5 +86,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/price" />
+        app:layout_constraintTop_toBottomOf="@id/price"
+        />
+
+    <Button
+        android:id="@+id/uploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Image"
+        android:background="@drawable/round_button"
+        android:backgroundTint="?attr/buttonColor"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/post"
+        app:layout_constraintTop_toBottomOf="@id/price"
+        android:onClick="chooseAndUploadImage" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
