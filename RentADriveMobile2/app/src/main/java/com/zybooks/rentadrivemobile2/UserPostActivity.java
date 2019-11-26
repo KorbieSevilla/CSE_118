@@ -191,6 +191,8 @@ public class UserPostActivity extends AppCompatActivity {
 
                         }
                     });
+        }else{
+            Toast.makeText(this, "filepath is null", Toast.LENGTH_LONG);
         }
     }
 
