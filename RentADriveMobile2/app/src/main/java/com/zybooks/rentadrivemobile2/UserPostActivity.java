@@ -36,6 +36,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.UUID;
 
 public class UserPostActivity extends AppCompatActivity {
     EditText name, address, description, price;
@@ -169,32 +170,25 @@ public class UserPostActivity extends AppCompatActivity {
 
     private void uploadImage() {
         if(filepath != null){
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Uploading...");
-            progressDialog.show();
 
-            StorageReference ref = storageRef.child("images/" + address.getText().toString());
+            StorageReference ref = storageRef.child("images/" + UUID.randomUUID().toString());
             ref.putFile(filepath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            progressDialog.dismiss();
                             Toast.makeText(UserPostActivity.this, "Image uploaded successfully!", Toast.LENGTH_LONG);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            progressDialog.dismiss();
                             Toast.makeText(UserPostActivity.this, "Image failed to upload.", Toast.LENGTH_LONG);
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
-                                    .getTotalByteCount());
-                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+
                         }
                     });
         }
