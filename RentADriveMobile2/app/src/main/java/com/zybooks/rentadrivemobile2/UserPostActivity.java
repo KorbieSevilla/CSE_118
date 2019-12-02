@@ -142,11 +142,13 @@ public class UserPostActivity extends AppCompatActivity {
             addresses = coder.getFromLocationName(addr, 5);
             if(addresses == null){
                 return null;
+            }else if(addresses.size() < 1){
+                Toast.makeText(this, "The address you entered is invalid, please try again.", Toast.LENGTH_LONG).show();
+                return null;
+            }else{
+                Address location = addresses.get(0);
+                p1 = new LatLng(location.getLatitude(), location.getLongitude());
             }
-
-            Address location = addresses.get(0);
-            p1 = new LatLng(location.getLatitude(), location.getLongitude());
-
         } catch (IOException e){
             e.printStackTrace();
         }
