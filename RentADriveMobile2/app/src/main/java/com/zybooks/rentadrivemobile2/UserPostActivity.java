@@ -10,6 +10,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -121,6 +122,7 @@ public class UserPostActivity extends AppCompatActivity {
         ref.child("postings").setValue(postings).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                Log.d("UserPostACtivity", task.getException().getMessage());
                 if(task.isSuccessful()){
                     Toast.makeText(UserPostActivity.this, "Successfully added driveway!", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(UserPostActivity.this, NavigationActivity.class));
