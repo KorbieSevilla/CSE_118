@@ -23,13 +23,6 @@ public class Register extends AppCompatActivity {
     FirebaseAuth uAuth;
     private ProgressBar progressBar;
 
-
-
-    //testver
-    // Button Testing for Google Map
-    Button Map;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
