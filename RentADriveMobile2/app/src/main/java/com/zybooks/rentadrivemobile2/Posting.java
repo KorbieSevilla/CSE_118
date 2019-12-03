@@ -16,4 +16,17 @@ public class Posting implements Serializable {
         this.price = price;
     }
 
+    public List<LatLng> getAddresses(){
+        return this.addresses;
+    }
+
+    public String getDescription(){
+        return this.description;
+    }
+
+    public float getPrice(){
+        return this.price;
+    }
+
+
 }

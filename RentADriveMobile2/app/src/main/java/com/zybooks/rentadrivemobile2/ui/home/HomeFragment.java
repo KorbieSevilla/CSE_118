@@ -21,15 +21,26 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.zybooks.rentadrivemobile2.NavigationActivity;
+import com.zybooks.rentadrivemobile2.Posting;
 import com.zybooks.rentadrivemobile2.R;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.zybooks.rentadrivemobile2.UserPostActivity;
+
+import java.util.List;
 
 //public class HomeFragment extends Fragment implements OnMapReadyCallback
 public class HomeFragment extends Fragment implements OnMapReadyCallback{
     GoogleMap mMap;
     private HomeViewModel homeViewModel;
+    private FirebaseDatabase db;
+    private DatabaseReference ref;
+
     public HomeFragment() {
 
     }
@@ -51,6 +62,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.homeMap);
         mapFragment.getMapAsync(this);
 
+        db = FirebaseDatabase.getInstance();
+        ref = db.getReference().child("postings");
+
         FloatingActionButton postButton = getView().findViewById(R.id.postButton);
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,31 +74,62 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
         });
 
     }
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
         float zoomLevel = 10.0f;
-        Marker tosca, SV;
 
-//         Add a marker in Santa Cruz and move the camera
-        LatLng TOSCA = new LatLng(36.980560, -122.060204);
-        tosca = mMap.addMarker(new MarkerOptions()
-                .position(TOSCA)
-                .title("Santa Cruz"));
-        tosca.showInfoWindow();
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TOSCA, zoomLevel));
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot posting : dataSnapshot.getChildren()){
+                    Posting p = posting.getValue(Posting.class);
+                    List<LatLng> address = p.getAddresses();
+                    mMap.addMarker(new MarkerOptions()
+                        .position(address.get(0))
+                            .title(p.getPrice() + "")
+                            .snippet(p.getDescription())
+                    );
+                }
+            }
 
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
-        tosca.hideInfoWindow();
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        LatLng scottsValley = new LatLng(37.051102, -122.014702);
-        SV = mMap.addMarker(new MarkerOptions()
-                .position(scottsValley)
-                .title("Scotts Valley"));
-        //.snippet("Population: 7 people"));
-        SV.showInfoWindow();
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
+            }
+        };
+        ref.addValueEventListener(listener);
 
-//        mMap.setOnInfoWindowClickListener(this);
+
+
+
+
+//        mMap = googleMap;
+//        float zoomLevel = 10.0f;
+//        Marker tosca, SV;
+//
+////         Add a marker in Santa Cruz and move the camera
+//        LatLng TOSCA = new LatLng(36.980560, -122.060204);
+//        tosca = mMap.addMarker(new MarkerOptions()
+//                .position(TOSCA)
+//                .title("Santa Cruz"));
+//        tosca.showInfoWindow();
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TOSCA, zoomLevel));
+//
+////        mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
+//        tosca.hideInfoWindow();
+//
+//        LatLng scottsValley = new LatLng(37.051102, -122.014702);
+//        SV = mMap.addMarker(new MarkerOptions()
+//                .position(scottsValley)
+//                .title("Scotts Valley"));
+//        //.snippet("Population: 7 people"));
+//        SV.showInfoWindow();
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
+//
+////        mMap.setOnInfoWindowClickListener(this);
     }
 }
