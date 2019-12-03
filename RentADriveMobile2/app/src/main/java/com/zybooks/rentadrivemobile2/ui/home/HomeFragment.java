@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 
     }
 
+    // DO NOT TOUCH EVER
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 //        homeViewModel =
@@ -42,6 +43,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 
         return root;
     }
+
+    // Make all map adjustments in here
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
@@ -70,6 +73,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
                 .title("Santa Cruz"));
         tosca.showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TOSCA, zoomLevel));
+
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
         tosca.hideInfoWindow();
 

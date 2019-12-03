@@ -117,12 +117,11 @@ public class UserPostActivity extends AppCompatActivity {
         locations = addresses;
         float mPrice = Float.parseFloat(price.getText().toString());
         Posting p = new Posting(locations, description.getText().toString(), mPrice);
-        Map<String, Posting> postings = new HashMap<>();
-        postings.put(name.getText().toString(), p);
-        ref.child("postings").setValue(postings).addOnCompleteListener(new OnCompleteListener<Void>() {
+//        Map<String, Posting> postings = new HashMap<>();
+//        postings.put(name.getText().toString(), p);
+        ref.child("postings").child(name.getText().toString()).setValue(p).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Log.d("UserPostACtivity", task.getException().getMessage());
                 if(task.isSuccessful()){
                     Toast.makeText(UserPostActivity.this, "Successfully added driveway!", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(UserPostActivity.this, NavigationActivity.class));
