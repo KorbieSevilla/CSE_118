@@ -103,7 +103,6 @@ public class UserPostActivity extends AppCompatActivity {
     private void addLocationToDB(String addr) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference();
-        String currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         ArrayList<LatLng> addresses = new ArrayList<>();
         List<LatLng> locations;
 
@@ -115,7 +114,8 @@ public class UserPostActivity extends AppCompatActivity {
         }
 
         locations = addresses;
-        Posting p = new Posting(locations, description.getText().toString());
+        float mPrice = Float.parseFloat(price.getText().toString());
+        Posting p = new Posting(locations, description.getText().toString(), mPrice);
         Map<String, Posting> postings = new HashMap<>();
         postings.put(name.getText().toString(), p);
         ref.child("postings").setValue(postings).addOnCompleteListener(new OnCompleteListener<Void>() {
