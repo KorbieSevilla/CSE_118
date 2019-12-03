@@ -49,7 +49,7 @@ public class NavigationActivity extends AppCompatActivity {
         NavigationView mNavigationView = findViewById(R.id.nav_view);
         View headerView = mNavigationView.getHeaderView(0);
         setSupportActionBar(toolbar);
-        FloatingActionButton postButton = findViewById(R.id.postButton);
+//        FloatingActionButton postButton = findViewById(R.id.postButton);
         final TextView navUserName = (TextView) headerView.findViewById(R.id.nav_username);
         TextView navUserEmail = (TextView) headerView.findViewById(R.id.nav_userEmail);
         ImageView profilePic = (ImageView) headerView.findViewById(R.id.imageView);
@@ -77,12 +77,12 @@ public class NavigationActivity extends AppCompatActivity {
         navUserEmail.setText(userEmail);
 
         //Post Button goes to the userPostActivity page
-        postButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(NavigationActivity.this, UserPostActivity.class));
-            }
-        });
+//        postButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(NavigationActivity.this, UserPostActivity.class));
+//            }
+//        });
 
         //userProfile changin
         profilePic.setOnClickListener(new View.OnClickListener() {
