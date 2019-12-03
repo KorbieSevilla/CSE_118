@@ -60,8 +60,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
         //tosca.hideInfoWindow();
 
-
-
         LatLng scottsValley = new LatLng(37.051102, -122.014702);
         SV = mMap.addMarker(new MarkerOptions()
                 .position(scottsValley)
