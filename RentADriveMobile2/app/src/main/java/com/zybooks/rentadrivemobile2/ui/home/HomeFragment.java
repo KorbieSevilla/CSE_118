@@ -22,44 +22,54 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.zybooks.rentadrivemobile2.R;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
-public class HomeFragment extends FragmentActivity implements OnMapReadyCallback{
+//public class HomeFragment extends Fragment implements OnMapReadyCallback
+public class HomeFragment extends Fragment implements OnMapReadyCallback{
     GoogleMap mMap;
     private HomeViewModel homeViewModel;
+    public HomeFragment() {
+
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+//        homeViewModel =
+//                ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 //        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //textView.setText(s);
-            }
-        });
+//        homeViewModel.getText().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                //textView.setText(s);
+//            }
+//        });
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.homeMap);
-        mapFragment.getMapAsync(this);
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.homeMap);
+//        mapFragment.getMapAsync(this);
 
         return root;
     }
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+        SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.homeMap);
+        mapFragment.getMapAsync(this);
 
+    }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         float zoomLevel = 10.0f;
         Marker tosca, SV;
 
-        // Add a marker in Santa Cruz and move the camera
+//         Add a marker in Santa Cruz and move the camera
         LatLng TOSCA = new LatLng(36.980560, -122.060204);
         tosca = mMap.addMarker(new MarkerOptions()
                 .position(TOSCA)
                 .title("Santa Cruz"));
         tosca.showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TOSCA, zoomLevel));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
-        //tosca.hideInfoWindow();
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
+        tosca.hideInfoWindow();
 
         LatLng scottsValley = new LatLng(37.051102, -122.014702);
         SV = mMap.addMarker(new MarkerOptions()
@@ -69,6 +79,6 @@ public class HomeFragment extends FragmentActivity implements OnMapReadyCallback
         SV.showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
 
-        //mMap.setOnInfoWindowClickListener(this);
+//        mMap.setOnInfoWindowClickListener(this);
     }
 }
