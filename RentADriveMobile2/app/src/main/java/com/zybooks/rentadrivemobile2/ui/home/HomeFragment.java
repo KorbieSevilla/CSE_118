@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -82,40 +83,24 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        if(newPosting != null){
-            mMap.addMarker(new MarkerOptions()
-                        .position(newPosting.getAddresses().get(0))
-                            .title(newPosting.getPrice() + "")
-                            .snippet(newPosting.getDescription())
-                    );
-
-        }
-//
-//        mMap = googleMap;
 //        float zoomLevel = 10.0f;
+//        Marker SV;
 //
-//        ValueEventListener listener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for(DataSnapshot posting : dataSnapshot.getChildren()){
-//                    Posting p = posting.getValue(Posting.class);
-//                    List<LatLng> address = p.getAddresses();
-//                    mMap.addMarker(new MarkerOptions()
-//                        .position(address.get(0))
-//                            .title(p.getPrice() + "")
-//                            .snippet(p.getDescription())
-//                    );
-//                }
-//            }
+//        LatLng scottsValley = new LatLng(37.051102, -122.014702);
+//        SV = mMap.addMarker(new MarkerOptions()
+//                .position(scottsValley)
+//                .title("Scotts Valley"));
+//        //.snippet("Population: 7 people"));
+//        SV.showInfoWindow();
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
+//        mMap.clear();
+//        MarkerOptions mp = new MarkerOptions();
+//        mp.position(new LatLng(googleMap.getLatitude(), googleMap.getLongitude()));
+//        mp.title("My position!!");
+//        mMap.addMarker(mp);
 //
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        };
-//        ref.addValueEventListener(listener);
-
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+//            new LatLng(googleMap.getLatitude(), googleMap.getLongitude()), 16));
 
 
 
@@ -124,14 +109,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
 
-//        LatLng scottsValley = new LatLng(37.051102, -122.014702);
-//        SV = mMap.addMarker(new MarkerOptions()
-//                .position(scottsValley)
-//                .title("Scotts Valley"));
-//        //.snippet("Population: 7 people"));
-//        SV.showInfoWindow();
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
-//
 ////        mMap.setOnInfoWindowClickListener(this);
 
 
@@ -158,5 +135,19 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 //        };
 //        ref.addValueEventListener(listener);
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+//        mMap = googleMap;
+//
+//        if(newPosting != null){
+//            Toast.makeText(getContext(), "Posting was received", Toast.LENGTH_LONG).show();
+//            mMap.addMarker(new MarkerOptions()
+//                    .position(newPosting.getAddresses().get(0))
+//                    .title(newPosting.getPrice() + "")
+//                    .snippet(newPosting.getDescription())
+//            );
+//
+//        }
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
     }
 }
