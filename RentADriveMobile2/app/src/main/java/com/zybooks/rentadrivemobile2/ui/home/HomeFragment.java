@@ -75,9 +75,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
             }
         });
 
-        if(savedInstanceState != null){
-            newPosting = (Posting)savedInstanceState.getSerializable("Posting");
-        }
+       Intent i = getActivity().getIntent();
+       newPosting = (Posting) i.getSerializableExtra("Posting");
     }
 
     @Override
