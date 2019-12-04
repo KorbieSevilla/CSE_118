@@ -40,6 +40,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
     private HomeViewModel homeViewModel;
     private FirebaseDatabase db;
     private DatabaseReference ref;
+    private Posting newPosting;
 
     public HomeFragment() {
 
@@ -73,34 +74,47 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
             }
         });
 
+        if(savedInstanceState != null){
+            newPosting = (Posting)savedInstanceState.getSerializable("Posting");
+        }
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         mMap = googleMap;
-        float zoomLevel = 10.0f;
 
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot posting : dataSnapshot.getChildren()){
-                    Posting p = posting.getValue(Posting.class);
-                    List<LatLng> address = p.getAddresses();
-                    mMap.addMarker(new MarkerOptions()
-                        .position(address.get(0))
-                            .title(p.getPrice() + "")
-                            .snippet(p.getDescription())
+        if(newPosting != null){
+            mMap.addMarker(new MarkerOptions()
+                        .position(newPosting.getAddresses().get(0))
+                            .title(newPosting.getPrice() + "")
+                            .snippet(newPosting.getDescription())
                     );
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        ref.addValueEventListener(listener);
+        }
+//
+//        mMap = googleMap;
+//        float zoomLevel = 10.0f;
+//
+//        ValueEventListener listener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot posting : dataSnapshot.getChildren()){
+//                    Posting p = posting.getValue(Posting.class);
+//                    List<LatLng> address = p.getAddresses();
+//                    mMap.addMarker(new MarkerOptions()
+//                        .position(address.get(0))
+//                            .title(p.getPrice() + "")
+//                            .snippet(p.getDescription())
+//                    );
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        };
+//        ref.addValueEventListener(listener);
 
 
 
