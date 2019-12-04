@@ -40,6 +40,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
     private HomeViewModel homeViewModel;
     private FirebaseDatabase db;
     private DatabaseReference ref;
+    private Posting newPosting;
 
     public HomeFragment() {
 
@@ -73,24 +74,47 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
             }
         });
 
+        if(savedInstanceState != null){
+            newPosting = (Posting)savedInstanceState.getSerializable("Posting");
+        }
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        float zoomLevel = 10.0f;
-        Marker tosca, SV;
 
-        // Add a marker in Santa Cruz and move the camera
-//        LatLng TOSCA = new LatLng(36.980560, -122.060204);
-//        tosca = mMap.addMarker(new MarkerOptions()
-//                .position(TOSCA)
-//                .title("Santa Cruz"));
-        //tosca.hideInfoWindow();
-        //tosca.showInfoWindow();
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TOSCA, zoomLevel));
+        if(newPosting != null){
+            mMap.addMarker(new MarkerOptions()
+                        .position(newPosting.getAddresses().get(0))
+                            .title(newPosting.getPrice() + "")
+                            .snippet(newPosting.getDescription())
+                    );
 
-
+        }
+//
+//        mMap = googleMap;
+//        float zoomLevel = 10.0f;
+//
+//        ValueEventListener listener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot posting : dataSnapshot.getChildren()){
+//                    Posting p = posting.getValue(Posting.class);
+//                    List<LatLng> address = p.getAddresses();
+//                    mMap.addMarker(new MarkerOptions()
+//                        .position(address.get(0))
+//                            .title(p.getPrice() + "")
+//                            .snippet(p.getDescription())
+//                    );
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        };
+//        ref.addValueEventListener(listener);
 
 
 
