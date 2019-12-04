@@ -119,21 +119,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 
 
 
-//        mMap = googleMap;
-//        float zoomLevel = 10.0f;
-//        Marker tosca, SV;
-//
-////         Add a marker in Santa Cruz and move the camera
-//        LatLng TOSCA = new LatLng(36.980560, -122.060204);
-//        tosca = mMap.addMarker(new MarkerOptions()
-//                .position(TOSCA)
-//                .title("Santa Cruz"));
-//        tosca.showInfoWindow();
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TOSCA, zoomLevel));
-//
-////        mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
-//        tosca.hideInfoWindow();
-//
+
+
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
+
 //        LatLng scottsValley = new LatLng(37.051102, -122.014702);
 //        SV = mMap.addMarker(new MarkerOptions()
 //                .position(scottsValley)
@@ -143,5 +132,30 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
 //
 ////        mMap.setOnInfoWindowClickListener(this);
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//        ValueEventListener listener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot posting : dataSnapshot.getChildren()){
+//                    Posting p = posting.getValue(Posting.class);
+//                    List<LatLng> address = p.getAddresses();
+//                    mMap.addMarker(new MarkerOptions()
+//                        .position(address.get(0))
+//                        .title(p.getPrice() + "")
+//                        .snippet(p.getDescription())
+//                    );
+//                    //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( ,zoomLevel));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        };
+//        ref.addValueEventListener(listener);
+////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }
