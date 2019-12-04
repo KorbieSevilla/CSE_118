@@ -35,6 +35,13 @@ import com.zybooks.rentadrivemobile2.UserPostActivity;
 
 import java.util.List;
 
+
+// For getting lat/lng in onMapReady
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+
+
 //public class HomeFragment extends Fragment implements OnMapReadyCallback
 public class HomeFragment extends Fragment implements OnMapReadyCallback{
     GoogleMap mMap;
@@ -42,6 +49,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
     private FirebaseDatabase db;
     private DatabaseReference ref;
     private Posting newPosting;
+
+
 
     public HomeFragment() {
 
@@ -67,6 +76,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
         db = FirebaseDatabase.getInstance();
         ref = db.getReference().child("postings");
 
+        Intent i = getActivity().getIntent();
+        newPosting = (Posting) i.getSerializableExtra("Posting");
+        Toast.makeText(getActivity(), "Added posting", Toast.LENGTH_LONG).show();
+
         FloatingActionButton postButton = getView().findViewById(R.id.postButton);
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,13 +88,49 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
             }
         });
 
-       Intent i = getActivity().getIntent();
-       newPosting = (Posting) i.getSerializableExtra("Posting");
+
     }
 
+
+    // onMapReady
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+//        float zoomLevel = 10.0f;
+//
+//        mMap.clear();
+//        MarkerOptions mp = new MarkerOptions();
+//        mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
+//        mp.title("My position!!");
+//        mMap.addMarker(mp);
+//
+//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+//                new LatLng(location.getLatitude(), location.getLongitude()), 16));
+
+
+        if(newPosting != null){
+            Toast.makeText(getActivity(), "Posting found", Toast.LENGTH_LONG).show();
+            mMap.addMarker(new MarkerOptions()
+                .position(newPosting.getAddresses().get(0))
+                .title(newPosting.getPrice() + "")
+                .snippet(newPosting.getDescription()));
+        }
+
+
+//        LatLng scottsValley = new LatLng(37.051102, -122.014702);
+//        SV = mMap.addMarker(new MarkerOptions()
+//                .position(scottsValley)
+//                .title("Scotts Valley"));
+//        //.snippet("Population: 7 people"));
+//        SV.showInfoWindow();
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
+
+
+
+
+
+
+
 //        float zoomLevel = 10.0f;
 //        Marker SV;
 //

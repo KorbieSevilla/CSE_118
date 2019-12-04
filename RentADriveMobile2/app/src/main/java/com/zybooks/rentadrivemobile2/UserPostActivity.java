@@ -28,6 +28,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.zybooks.rentadrivemobile2.ui.home.HomeFragment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -122,9 +123,9 @@ public class UserPostActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(UserPostActivity.this, "Successfully added driveway!", Toast.LENGTH_LONG).show();
-                    Intent i = new Intent();
+                    Intent i = new Intent(UserPostActivity.this, NavigationActivity.class);
                     i.putExtra("Posting", p);
-                    startActivity(new Intent(UserPostActivity.this, NavigationActivity.class));
+                    startActivity(i);
                 }else{
                     Toast.makeText(UserPostActivity.this, "Failed to add driveway", Toast.LENGTH_LONG).show();
                 }
@@ -140,6 +141,7 @@ public class UserPostActivity extends AppCompatActivity {
         try {
             addresses = coder.getFromLocationName(addr, 5);
             if(addresses == null){
+                Toast.makeText(this, "The address can't be found", Toast.LENGTH_LONG).show();
                 return null;
             }else if(addresses.size() < 1){
                 Toast.makeText(this, "The address you entered is invalid, please try again.", Toast.LENGTH_LONG).show();
