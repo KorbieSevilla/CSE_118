@@ -10,10 +10,6 @@ public class Posting implements Serializable {
     public String description;
     public float price;
 
-    public Posting(){
-
-    }
-
     public Posting(List<LatLng> addressList, String desc, float price){
         this.addresses = addressList;
         this.description = desc;

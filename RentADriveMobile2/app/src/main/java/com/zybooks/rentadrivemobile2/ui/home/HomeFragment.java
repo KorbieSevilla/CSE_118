@@ -76,9 +76,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
         db = FirebaseDatabase.getInstance();
         ref = db.getReference().child("postings");
 
-        Intent i = getActivity().getIntent();
-        newPosting = (Posting) i.getSerializableExtra("Posting");
-        Toast.makeText(getActivity(), "Added posting", Toast.LENGTH_LONG).show();
+        Posting p = (Posting) getArguments().getSerializable("Posting");
+        if(p != null){
+            Toast.makeText(getContext(), "Posting Received", Toast.LENGTH_LONG).show();
+        }
+        newPosting = p;
 
         FloatingActionButton postButton = getView().findViewById(R.id.postButton);
         postButton.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +111,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 
 
         if(newPosting != null){
-            Toast.makeText(getActivity(), "Posting found", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Posting being placed", Toast.LENGTH_LONG).show();
             mMap.addMarker(new MarkerOptions()
                 .position(newPosting.getAddresses().get(0))
                 .title(newPosting.getPrice() + "")
