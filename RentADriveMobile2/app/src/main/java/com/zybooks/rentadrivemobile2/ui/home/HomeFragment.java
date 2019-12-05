@@ -107,6 +107,27 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
         SV.showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
 
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Posting p = dataSnapshot.getValue(Posting.class);
+                List<LatLng> address = p.getAddresses();
+                mMap.addMarker(new MarkerOptions()
+                        .position(address.get(0))
+                        .title(p.getPrice() + "")
+                        .snippet(p.getDescription())
+                );
+                    //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( ,zoomLevel));
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        ref.addValueEventListener(listener);
+
 
 
 
@@ -125,13 +146,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 //                new LatLng(location.getLatitude(), location.getLongitude()), 16));
 
 
-        if(newPosting != null){
-            Toast.makeText(getActivity(), "Posting being placed", Toast.LENGTH_LONG).show();
-            mMap.addMarker(new MarkerOptions()
-                .position(newPosting.getAddresses().get(0))
-                .title(newPosting.getPrice() + "")
-                .snippet(newPosting.getDescription()));
-        }
+//        if(newPosting != null){
+//            Toast.makeText(getActivity(), "Posting being placed", Toast.LENGTH_LONG).show();
+//            mMap.addMarker(new MarkerOptions()
+//                .position(newPosting.getAddresses().get(0))
+//                .title(newPosting.getPrice() + "")
+//                .snippet(newPosting.getDescription()));
+//        }
 
 
 

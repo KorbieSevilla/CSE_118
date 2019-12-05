@@ -50,6 +50,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         float zoomLevel = 10.0f;
         Marker tosca, SV;
 
+        if(getIntent() != null){
+            Posting p = (Posting) getIntent().getSerializableExtra("Posting");
+            mMap.addMarker(new MarkerOptions()
+                    .position(p.getAddresses().get(0))
+                    .title(p.getPrice() + "")
+                    .snippet(p.getDescription()));
+
+        }
+
         // Add a marker in Santa Cruz and move the camera
         LatLng TOSCA = new LatLng(36.980560, -122.060204);
         tosca = mMap.addMarker(new MarkerOptions()
