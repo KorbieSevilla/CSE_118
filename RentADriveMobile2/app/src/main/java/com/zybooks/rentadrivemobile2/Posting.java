@@ -21,8 +21,8 @@ public class Posting implements Serializable {
         this.description = desc;
         this.price = price;
 
-        lat = addressList.get(0).latitude;
-        longitude = addressList.get(0).longitude;
+        lat = addressList.get(0).getLatitude();
+        longitude = addressList.get(0).getLongitude();
     }
 
     public List<com.zybooks.rentadrivemobile2.LatLng> getAddresses(){
