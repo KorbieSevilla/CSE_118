@@ -79,14 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // MAPS TESTING
-        map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NavigationActivity.class));
-            }
-        });
-
+        
 
     }
 }
