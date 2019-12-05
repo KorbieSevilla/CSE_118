@@ -76,11 +76,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
         db = FirebaseDatabase.getInstance();
         ref = db.getReference().child("postings");
 
-        Posting p = (Posting) getArguments().getSerializable("Posting");
-        if(p != null){
-            Toast.makeText(getContext(), "Posting Received", Toast.LENGTH_LONG).show();
+        if(getArguments().getSerializable("Posting") != null) {
+            newPosting = (Posting) getArguments().getSerializable("Posting");
         }
-        newPosting = p;
 
         FloatingActionButton postButton = getView().findViewById(R.id.postButton);
         postButton.setOnClickListener(new View.OnClickListener() {
