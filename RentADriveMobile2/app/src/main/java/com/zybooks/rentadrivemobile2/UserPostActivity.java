@@ -123,6 +123,12 @@ public class UserPostActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(UserPostActivity.this, "Successfully added driveway!", Toast.LENGTH_LONG).show();
+
+                    HomeFragment homeFragment = new HomeFragment();
+                    Bundle args = new Bundle();
+                    args.putSerializable("Posting", p);
+                    homeFragment.setArguments(args);
+
                     Intent i = new Intent(UserPostActivity.this, NavigationActivity.class);
 //                    i.putExtra("Posting", p);
                     startActivity(i);
