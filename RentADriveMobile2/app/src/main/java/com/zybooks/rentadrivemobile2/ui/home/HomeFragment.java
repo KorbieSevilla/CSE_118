@@ -14,11 +14,13 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -48,7 +50,7 @@ import android.location.LocationManager;
 
 
 //public class HomeFragment extends Fragment implements OnMapReadyCallback
-public class HomeFragment extends Fragment implements OnMapReadyCallback {
+public class HomeFragment extends Fragment implements OnMapReadyCallback, LocationListener {
     GoogleMap mMap;
     private HomeViewModel homeViewModel;
     private FirebaseDatabase db;
@@ -104,21 +106,38 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         float zoomLevel = 10.0f;
 
         // Implementing user location marker!
-        mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
-            @Override
-            public void onMyLocationClick(@NonNull Location location) {
-                MarkerOptions mp = new MarkerOptions();
-                mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
-                mp.title("My position!!");
-                mMap.addMarker(mp);
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                        new LatLng(location.getLatitude(), location.getLongitude()), 16));
-            }
-        });
+//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//
+//
+//        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED &&
+//                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+//                        != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    Activity#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for Activity#requestPermissions for more details.
+//            return;
+//        }
+//        Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
+
+
+
+
+
+
+
+
+
+
 
 
         // Positions the camera with the specific bounds. Refer to line 55
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locations.getCenter(), 9.5f));
+
 
         ValueEventListener listener = new ValueEventListener() {
             @Override
@@ -142,4 +161,31 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         ref.addValueEventListener(listener);
 
     }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+        double longitude=location.getLongitude();
+        double latitude=location.getLatitude();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+
+
+
+
 }
