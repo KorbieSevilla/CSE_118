@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot posting : dataSnapshot.getChildren()) {
                     Posting p = posting.getValue(Posting.class);
-                    LatLng location = new LatLng(p.lat, p.longitude);
+                    LatLng location = new LatLng(p.getLat(), p.getLong());
                     mMap.addMarker(new MarkerOptions()
                             .position(location)
                             .title(p.getPrice() + "")

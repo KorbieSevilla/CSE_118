@@ -13,7 +13,6 @@ public class Posting implements Serializable {
 
 
     public Posting(){
-
     }
 
     public Posting(List<LatLng> addressList, String desc, float price){
@@ -21,8 +20,8 @@ public class Posting implements Serializable {
         this.description = desc;
         this.price = price;
 
-        lat = addressList.get(0).getLatitude();
-        longitude = addressList.get(0).getLongitude();
+        this.lat = addressList.get(0).getLatitude();
+        this.longitude = addressList.get(0).getLongitude();
     }
 
     public List<com.zybooks.rentadrivemobile2.LatLng> getAddresses(){
@@ -35,6 +34,14 @@ public class Posting implements Serializable {
 
     public float getPrice(){
         return this.price;
+    }
+
+    public double getLat(){
+        return this.lat;
+    }
+
+    public double getLong(){
+        return this.longitude;
     }
 
 
