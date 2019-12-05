@@ -124,7 +124,7 @@ public class UserPostActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(UserPostActivity.this, "Successfully added driveway!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(UserPostActivity.this, NavigationActivity.class);
-                    i.putExtra("Posting", p);
+//                    i.putExtra("Posting", p);
                     startActivity(i);
                 }else{
                     Toast.makeText(UserPostActivity.this, "Failed to add driveway", Toast.LENGTH_LONG).show();

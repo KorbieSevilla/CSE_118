@@ -96,8 +96,25 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-//        float zoomLevel = 10.0f;
-//
+        float zoomLevel = 10.0f;
+        Marker SV;
+
+        LatLng scottsValley = new LatLng(37.051102, -122.014702);
+        SV = mMap.addMarker(new MarkerOptions()
+                .position(scottsValley)
+                .title("Scotts Valley"));
+        //.snippet("Population: 7 people"));
+        SV.showInfoWindow();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
+
+
+
+
+
+
+
+
+
 //        mMap.clear();
 //        MarkerOptions mp = new MarkerOptions();
 //        mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
@@ -108,15 +125,21 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 //                new LatLng(location.getLatitude(), location.getLongitude()), 16));
 
 
-        if(newPosting != null){
-            Toast.makeText(getActivity(), "Posting found", Toast.LENGTH_LONG).show();
-            mMap.addMarker(new MarkerOptions()
-                .position(newPosting.getAddresses().get(0))
-                .title(newPosting.getPrice() + "")
-                .snippet(newPosting.getDescription()));
-        }
 
 
+
+
+
+
+
+//        if(newPosting != null){
+//            Toast.makeText(getActivity(), "Posting found", Toast.LENGTH_LONG).show();
+//            mMap.addMarker(new MarkerOptions()
+//                .position(newPosting.getAddresses().get(0))
+//                .title(newPosting.getPrice() + "")
+//                .snippet(newPosting.getDescription()));
+//        }
+////////////////////////////////////////////////////////////////////////////////////////////////////
 //        LatLng scottsValley = new LatLng(37.051102, -122.014702);
 //        SV = mMap.addMarker(new MarkerOptions()
 //                .position(scottsValley)
@@ -124,13 +147,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
 //        //.snippet("Population: 7 people"));
 //        SV.showInfoWindow();
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 //        float zoomLevel = 10.0f;
 //        Marker SV;
 //
