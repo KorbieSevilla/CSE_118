@@ -111,7 +111,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 if(p != null) {
                     List<LatLng> address = p.getAddresses();
                     mMap.addMarker(new MarkerOptions()
-                            .position(address.get(0))
+                            .position(p.addresses.get(0))
                             .title(p.getPrice() + "")
                             .snippet(p.getDescription())
                     );

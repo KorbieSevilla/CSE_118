@@ -5,10 +5,15 @@ import com.google.android.gms.maps.model.LatLng;
 import java.io.Serializable;
 import java.util.List;
 
+
 public class Posting implements Serializable {
     public List<LatLng> addresses;
     public String description;
     public float price;
+
+    public Posting(){
+
+    }
 
     public Posting(List<LatLng> addressList, String desc, float price){
         this.addresses = addressList;
