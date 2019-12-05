@@ -89,31 +89,90 @@
         app:layout_constraintTop_toBottomOf="@id/price"
         />
 
-    <Button
+<!--    <Button-->
+<!--        android:id="@+id/chooseImage"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Choose Image"-->
+<!--        android:background="@drawable/round_button"-->
+<!--        android:backgroundTint="?attr/buttonColor"-->
+<!--        android:textColor="#ffffff"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toLeftOf="@id/post"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/price" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/uploadImage"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Upload Image"-->
+<!--        android:background="@drawable/round_button"-->
+<!--        android:backgroundTint="?attr/buttonColor"-->
+<!--        android:textColor="#ffffff"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/post"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/price" />-->
+    <LinearLayout
         android:id="@+id/chooseImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Image"
-        android:background="@drawable/round_button"
-        android:backgroundTint="?attr/buttonColor"
-        android:textColor="#ffffff"
+        android:background="@drawable/shape_oval_post"
+        android:clickable="true"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/post"
-        app:layout_constraintTop_toBottomOf="@id/price" />
+        app:layout_constraintTop_toBottomOf="@id/price"
+        >
 
-    <Button
+        <ImageView
+            android:id="@+id/img3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ic_camera_alt_black_24dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:text="Choose Image" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/uploadImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload Image"
-        android:background="@drawable/round_button"
-        android:backgroundTint="?attr/buttonColor"
-        android:textColor="#ffffff"
+        android:background="@drawable/shape_oval_post"
+        android:clickable="true"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/post"
-        app:layout_constraintTop_toBottomOf="@id/price" />
+        app:layout_constraintTop_toBottomOf="@id/price"
+        >
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ic_file_upload_black_24dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:text="Upload Images" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

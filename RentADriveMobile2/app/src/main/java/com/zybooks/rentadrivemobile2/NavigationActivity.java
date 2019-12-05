@@ -80,16 +80,17 @@ public class NavigationActivity extends AppCompatActivity {
         //get Users email and firebaseAuth userID
         String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+
+        //set image
+        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onComplete(@NonNull Task<Uri> task) {
+            public void onSuccess(Uri uri) {
                 Glide.with(NavigationActivity.this)
-                        .load(task.getResult())
+                        .load(uri)
                         .apply(RequestOptions.circleCropTransform())
                         .into(imageView);
             }
         });
-
 
 
         //get Username from firebase realtime

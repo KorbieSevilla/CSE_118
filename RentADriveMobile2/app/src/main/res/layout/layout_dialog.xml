@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/dialogText"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="How long do you want this driveway?"
+        android:textSize="25sp"
+        android:gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/numHours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+
+
+</android.widget.LinearLayout>
