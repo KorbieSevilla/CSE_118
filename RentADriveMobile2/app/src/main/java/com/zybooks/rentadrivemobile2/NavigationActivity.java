@@ -82,16 +82,6 @@ public class NavigationActivity extends AppCompatActivity {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         //set image
-
-//        storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Uri> task) {
-//                Glide.with(NavigationActivity.this)
-//                        .load(task.getResult())
-//                        .apply(RequestOptions.circleCropTransform())
-//                        .into(imageView);
-//            }
-//        });
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

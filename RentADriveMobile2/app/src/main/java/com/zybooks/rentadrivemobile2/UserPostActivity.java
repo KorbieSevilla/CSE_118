@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,7 +42,8 @@ import java.util.UUID;
 
 public class UserPostActivity extends AppCompatActivity {
     EditText name, address, description, price;
-    Button post, pickImage, addImage;
+    Button post;
+    LinearLayout addImage, pickImage;
     Uri filepath;
     private final int PICK_IMAGE_REQUEST = 71;
     FirebaseStorage storage;
@@ -198,7 +200,6 @@ public class UserPostActivity extends AppCompatActivity {
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
                         }
                     });
         }else{
