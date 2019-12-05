@@ -1,12 +1,10 @@
 package com.zybooks.rentadrivemobile2;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.io.Serializable;
 import java.util.List;
 
 public class Posting implements Serializable {
-    public List<LatLng> addresses;
+    public List<com.zybooks.rentadrivemobile2.LatLng> addresses;
     public String description;
     public float price;
     public double lat;
@@ -22,7 +20,7 @@ public class Posting implements Serializable {
         longitude = addressList.get(0).longitude;
     }
 
-    public List<LatLng> getAddresses(){
+    public List<com.zybooks.rentadrivemobile2.LatLng> getAddresses(){
         return this.addresses;
     }
 
