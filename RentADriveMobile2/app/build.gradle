@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.firebase:firebase-database:19.2.0'
+    implementation 'com.firebaseui:firebase-ui-storage:6.1.0'
 
     // Added these two lines
     // Adding the PlaceAutoCompleteFragment Dependency for Google Map search bar

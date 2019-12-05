@@ -46,7 +46,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        float zoomLevel = 10.0f;
+        Marker tosca, SV;
 
+//        if(getIntent() != null){
+//            Posting p = (Posting) getIntent().getSerializableExtra("Posting");
+//            mMap.addMarker(new MarkerOptions()
+//                    .position(p.getAddresses().get(0))
+//                    .title(p.getPrice() + "")
+//                    .snippet(p.getDescription()));
+//
+//        }
+
+        // Add a marker in Santa Cruz and move the camera
+        LatLng TOSCA = new LatLng(36.980560, -122.060204);
+        tosca = mMap.addMarker(new MarkerOptions()
+                .position(TOSCA)
+                .title("Santa Cruz"));
+        tosca.showInfoWindow();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(TOSCA, zoomLevel));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(santaCruz));
+        //tosca.hideInfoWindow();
+
+        LatLng scottsValley = new LatLng(37.051102, -122.014702);
+        SV = mMap.addMarker(new MarkerOptions()
+                .position(scottsValley)
+                .title("Scotts Valley"));
+                //.snippet("Population: 7 people"));
+        SV.showInfoWindow();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(scottsValley, zoomLevel));
+
+        //mMap.setOnInfoWindowClickListener(this);
     }
 
 //    @Override
