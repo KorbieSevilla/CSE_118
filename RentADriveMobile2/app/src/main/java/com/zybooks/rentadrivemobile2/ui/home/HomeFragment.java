@@ -1,6 +1,9 @@
 package com.zybooks.rentadrivemobile2.ui.home;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -51,8 +54,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private FirebaseDatabase db;
     private DatabaseReference ref;
     private Posting newPosting;
+    private LocationManager locationManager;
 
-    private LatLngBounds location = new LatLngBounds(
+    private LatLngBounds locations = new LatLngBounds(
             new LatLng(36.974117, -122.030792), new LatLng(37.0471707, -122.0152397));
 
     public HomeFragment() {
@@ -90,8 +94,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 startActivity(new Intent(getActivity(), UserPostActivity.class));
             }
         });
-
-
     }
 
 
@@ -100,9 +102,23 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         float zoomLevel = 10.0f;
-        Marker SV;
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location.getCenter(), 9.5f));
+        // Implementing user location marker!
+        mMap.setOnMyLocationClickListener(new GoogleMap.OnMyLocationClickListener() {
+            @Override
+            public void onMyLocationClick(@NonNull Location location) {
+                MarkerOptions mp = new MarkerOptions();
+                mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
+                mp.title("My position!!");
+                mMap.addMarker(mp);
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                        new LatLng(location.getLatitude(), location.getLongitude()), 16));
+            }
+        });
+
+
+        // Positions the camera with the specific bounds. Refer to line 55
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locations.getCenter(), 9.5f));
 
         ValueEventListener listener = new ValueEventListener() {
             @Override
@@ -117,28 +133,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                     );
 
                 }
-
-                    //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( ,zoomLevel));
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         };
         ref.addValueEventListener(listener);
-
-
-
-//         mMap.clear();
-//         MarkerOptions mp = new MarkerOptions();
-//         mp.position(new LatLng(location.getLatitude(), location.getLongitude()));
-//         mp.title("My position!!");
-//         mMap.addMarker(mp);
-//
-//         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-//                 new LatLng(location.getLatitude(), location.getLongitude()), 16));
 
     }
 }
