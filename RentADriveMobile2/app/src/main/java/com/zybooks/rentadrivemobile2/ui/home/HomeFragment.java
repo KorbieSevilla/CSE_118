@@ -118,7 +118,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                         );
                     }
                 }
-                    //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( ,zoomLevel));
             }
 
 
