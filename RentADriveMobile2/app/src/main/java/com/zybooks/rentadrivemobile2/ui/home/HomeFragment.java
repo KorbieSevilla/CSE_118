@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.zybooks.rentadrivemobile2.DrivewayDialog;
 import com.zybooks.rentadrivemobile2.NavigationActivity;
 import com.zybooks.rentadrivemobile2.Posting;
 import com.zybooks.rentadrivemobile2.R;
@@ -160,8 +161,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         };
         ref.addValueEventListener(listener);
 
-        
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                DrivewayDialog dialog = new DrivewayDialog();
+                dialog.show(getFragmentManager(), "driveway dialog");
 
+                return true;
+            }
+        });
     }
 
 
