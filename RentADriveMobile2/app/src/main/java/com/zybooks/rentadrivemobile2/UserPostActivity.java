@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -105,7 +104,7 @@ public class UserPostActivity extends AppCompatActivity {
     private void addLocationToDB(String addr) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference();
-        ArrayList<LatLng> addresses = new ArrayList<>();
+        ArrayList<com.zybooks.rentadrivemobile2.LatLng> addresses = new ArrayList<>();
         List<LatLng> locations;
 
         if(address2LatLng(addr) != null){
@@ -139,10 +138,10 @@ public class UserPostActivity extends AppCompatActivity {
         });
     }
 
-    private LatLng address2LatLng(String addr){
+    private com.zybooks.rentadrivemobile2.LatLng address2LatLng(String addr){
         Geocoder coder = new Geocoder(this);
         List<Address> addresses;
-        LatLng p1 = null;
+        com.zybooks.rentadrivemobile2.LatLng p1 = null;
 
         try {
             addresses = coder.getFromLocationName(addr, 5);
@@ -154,7 +153,7 @@ public class UserPostActivity extends AppCompatActivity {
                 return null;
             }else{
                 Address location = addresses.get(0);
-                p1 = new LatLng(location.getLatitude(), location.getLongitude());
+                p1 = new com.zybooks.rentadrivemobile2.LatLng(location.getLatitude(), location.getLongitude());
             }
         } catch (IOException e){
             e.printStackTrace();
