@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
         db = FirebaseDatabase.getInstance();
         ref = db.getReference().child("postings");
 
-        if(getArguments().getSerializable("Posting") != null) {
+        if(getArguments() != null && getArguments().getSerializable("Posting") != null) {
             newPosting = (Posting) getArguments().getSerializable("Posting");
         }
 
