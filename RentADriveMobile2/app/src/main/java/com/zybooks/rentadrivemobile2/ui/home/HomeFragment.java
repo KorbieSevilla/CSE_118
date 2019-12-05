@@ -100,11 +100,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 for(DataSnapshot posting : dataSnapshot.getChildren()) {
                     Posting p = posting.getValue(Posting.class);
                     LatLng location = new LatLng(p.getLat(), p.getLong());
-                    mMap.addMarker(new MarkerOptions()
+
+                    Marker m = mMap.addMarker(new MarkerOptions()
                             .position(location)
                             .title(p.getPrice() + "")
                             .snippet(p.getDescription())
                     );
+                    if(!m.isInfoWindowShown()){
+                        m.showInfoWindow();
+                    }
                 }
             }
             @Override
@@ -112,6 +116,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             }
         };
         ref.addValueEventListener(listener);
+
+
 
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
