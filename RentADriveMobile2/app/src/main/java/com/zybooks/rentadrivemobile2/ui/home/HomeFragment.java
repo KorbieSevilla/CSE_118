@@ -107,15 +107,17 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot posting : dataSnapshot.getChildren()) {
-                    Posting p = posting.getValue(Posting.class);
-                    if (p != null) {
-                        List<LatLng> address = p.getAddresses();
-                        mMap.addMarker(new MarkerOptions()
-                                .position(address.get(0))
-                                .title(p.getPrice() + "")
-                                .snippet(p.getDescription())
-                        );
+                for(DataSnapshot child : dataSnapshot.getChildren()) {
+                    for(DataSnapshot posting : child.getChildren()) {
+                        Posting p = posting.getValue(Posting.class);
+                        if (p != null) {
+                            List<LatLng> address = p.getAddresses();
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(address.get(0))
+                                    .title(p.getPrice() + "")
+                                    .snippet(p.getDescription())
+                            );
+                        }
                     }
                 }
                     //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( ,zoomLevel));
