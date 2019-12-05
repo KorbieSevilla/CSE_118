@@ -1,26 +1,20 @@
 package com.zybooks.rentadrivemobile2.ui.home;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -35,29 +29,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.zybooks.rentadrivemobile2.DrivewayDialog;
-import com.zybooks.rentadrivemobile2.NavigationActivity;
 import com.zybooks.rentadrivemobile2.Posting;
 import com.zybooks.rentadrivemobile2.R;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.zybooks.rentadrivemobile2.UserPostActivity;
 
-import java.util.List;
-
-
-// For getting lat/lng in onMapReady
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 
 
 //public class HomeFragment extends Fragment implements OnMapReadyCallback
-public class HomeFragment extends Fragment implements OnMapReadyCallback, LocationListener {
+public class HomeFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap mMap;
     private HomeViewModel homeViewModel;
     private FirebaseDatabase db;
     private DatabaseReference ref;
     private Posting newPosting;
-    private LocationManager locationManager;
+
 
     private LatLngBounds locations = new LatLngBounds(
             new LatLng(36.974117, -122.030792), new LatLng(37.0471707, -122.0152397));
@@ -104,41 +90,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        float zoomLevel = 10.0f;
-
-        // Implementing user location marker!
-//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//
-//
-//        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-//                != PackageManager.PERMISSION_GRANTED &&
-//                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-//                        != PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    Activity#requestPermissions
-//            // here to request the missing permissions, and then overriding
-//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//            //                                          int[] grantResults)
-//            // to handle the case where the user grants the permission. See the documentation
-//            // for Activity#requestPermissions for more details.
-//            return;
-//        }
-//        Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
-
-
-
-
-
-
-
-
-
-
-
 
         // Positions the camera with the specific bounds. Refer to line 55
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locations.getCenter(), 9.5f));
-
 
         ValueEventListener listener = new ValueEventListener() {
             @Override
@@ -151,15 +105,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                             .title(p.getPrice() + "")
                             .snippet(p.getDescription())
                     );
-
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         };
         ref.addValueEventListener(listener);
+
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -171,31 +124,5 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
             }
         });
     }
-
-
-    @Override
-    public void onLocationChanged(Location location) {
-        double longitude=location.getLongitude();
-        double latitude=location.getLatitude();
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
-
-
-
-
 
 }

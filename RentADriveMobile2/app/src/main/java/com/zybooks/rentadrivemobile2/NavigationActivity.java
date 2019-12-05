@@ -55,7 +55,7 @@ import java.net.URI;
 
 import javax.annotation.Nullable;
 
-public class NavigationActivity extends AppCompatActivity {
+public class NavigationActivity extends AppCompatActivity{
     private URI imageUri;
     private AppBarConfiguration mAppBarConfiguration;
 
