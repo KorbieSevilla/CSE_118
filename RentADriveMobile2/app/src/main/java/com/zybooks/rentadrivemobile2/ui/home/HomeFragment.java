@@ -99,6 +99,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         // Positions the camera with the specific bounds. Refer to line 55
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locations.getCenter(), 9.5f));
 
+        //Populates map based on contents of database
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -124,7 +125,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
 
 
-
+        //Dialog pop-up when you click on map marker
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {

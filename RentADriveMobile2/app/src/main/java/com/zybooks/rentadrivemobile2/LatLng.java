@@ -1,5 +1,6 @@
 package com.zybooks.rentadrivemobile2;
 
+//Custom LatLng object with an empty constructor so it can be retrieved from the database
 public class LatLng{
 
     public double latitude;

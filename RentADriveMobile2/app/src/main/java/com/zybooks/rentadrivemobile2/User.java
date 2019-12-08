@@ -3,6 +3,7 @@ package com.zybooks.rentadrivemobile2;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//Custom user class to add user information to database
 public class User implements Serializable {
     public String userName, userEmail, userPhone;
     public ArrayList userListings;

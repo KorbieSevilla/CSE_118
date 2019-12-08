@@ -1,45 +1,34 @@
 package com.zybooks.rentadrivemobile2;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.zybooks.rentadrivemobile2.ui.home.HomeFragment;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
 import java.util.UUID;
 
+//Activity that takes user information about the driveway they want to post for rent and adds
+//information to Firebase Realtime Database
 public class UserPostActivity extends AppCompatActivity {
     EditText name, address, description, price;
     Button post;
@@ -80,6 +69,7 @@ public class UserPostActivity extends AppCompatActivity {
             }
         });
 
+        //Check that all fields are filled in before adding posting to database
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +93,7 @@ public class UserPostActivity extends AppCompatActivity {
         });
     }
 
+    //Adds user posted address to database
     private void addLocationToDB(String addr) {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference();
@@ -133,6 +124,7 @@ public class UserPostActivity extends AppCompatActivity {
         });
     }
 
+    //Converts user posted address to a LatLng object
     private com.zybooks.rentadrivemobile2.LatLng address2LatLng(String addr){
         Geocoder coder = new Geocoder(this);
         List<Address> addresses;
@@ -157,6 +149,7 @@ public class UserPostActivity extends AppCompatActivity {
         return p1;
     }
 
+    //Opens dialog for user to choose image from their phone
     private void chooseImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -173,6 +166,7 @@ public class UserPostActivity extends AppCompatActivity {
         }
     }
 
+    //Uploads image chosen by user to Firebase Storage
     private void uploadImage() {
         if(filepath != null){
 
