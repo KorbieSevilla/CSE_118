@@ -16,8 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.zybooks.rentadrivemobile2.ui.home.HomeFragment;
 
+//Registration activity where users set up their information
 public class Register extends AppCompatActivity {
     EditText name, password, email, phone;
     Button registerPoster, registerRenter;
@@ -55,6 +55,8 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    //Checks that information inputted is valid and adds user to Firebase Authentication and
+    //adds other user information to the database using a custom User class
     private void registerUser(final String activity){
         final String uName = name.getText().toString().trim();
         final String uPW = password.getText().toString().trim();
@@ -84,9 +86,6 @@ public class Register extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Toast.makeText(Register.this, "Auth properly passed", Toast.LENGTH_LONG).show();
-
-
-
 
                 if(task.isSuccessful()){
                     User user = new User(uName, uEmail, uPhone, null);

@@ -6,13 +6,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+//Custom pop-up dialog that appears when you click on a map marker
 public class DrivewayDialog extends AppCompatDialogFragment {
-    EditText numHours;
 
     @Override()
     public Dialog onCreateDialog(Bundle savedInstanceState){

@@ -3,8 +3,7 @@ package com.zybooks.rentadrivemobile2;
 import java.io.Serializable;
 import java.util.List;
 
-
-// This page passes user input to the database
+//Posting object used to add posting information to database
 public class Posting implements Serializable {
     public List<com.zybooks.rentadrivemobile2.LatLng> addresses;
     public String description;

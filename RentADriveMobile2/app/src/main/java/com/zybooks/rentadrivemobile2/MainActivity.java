@@ -15,14 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+//Login activity where user's email and password are authenticated using Firebase Authentication
 public class MainActivity extends AppCompatActivity {
     EditText email, password;
     Button login, register;
     FirebaseAuth fAuth;
-
-
-    // MAPS TESTING PURPOSES
-    Button map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +31,6 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.loginPass);
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
-
-
-        // MAPS TESTING PURPOSES
-        map = findViewById(R.id.map);
-
-
         fAuth = FirebaseAuth.getInstance();
 
         login.setOnClickListener(new View.OnClickListener() {
