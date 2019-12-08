@@ -4,41 +4,16 @@ import java.io.Serializable;
 import java.util.List;
 
 
+// This page passes user input to the database
 public class Posting implements Serializable {
     public List<com.zybooks.rentadrivemobile2.LatLng> addresses;
     public String description;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public float price;
     public double lat;
     public double longitude;
 
-
     public Posting(){
     }
-
 
     public Posting(List<LatLng> addressList, String desc, float price){
         this.addresses = addressList;
@@ -68,6 +43,5 @@ public class Posting implements Serializable {
     public double getLong(){
         return this.longitude;
     }
-
 
 }

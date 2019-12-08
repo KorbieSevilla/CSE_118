@@ -8,25 +8,20 @@ import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 
+// Imports for the Navigation Bar
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.navigation.NavigationView;
+
+// Imports for calling the Firebase database
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,7 +33,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -47,9 +41,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+// Imports for taking in databse content
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 
@@ -67,7 +61,6 @@ public class NavigationActivity extends AppCompatActivity{
         NavigationView mNavigationView = findViewById(R.id.nav_view);
         View headerView = mNavigationView.getHeaderView(0);
         setSupportActionBar(toolbar);
-//      FloatingActionButton postButton = findViewById(R.id.postButton);
         final TextView navUserName = (TextView) headerView.findViewById(R.id.nav_username);
         TextView navUserEmail = (TextView) headerView.findViewById(R.id.nav_userEmail);
         ImageView profilePic = (ImageView) headerView.findViewById(R.id.imageView);
@@ -76,12 +69,12 @@ public class NavigationActivity extends AppCompatActivity{
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(pathString);
 
 
-        //get reference to firebase dataBase
-        //get Users email and firebaseAuth userID
+        // Get reference to firebase dataBase
+        // Get Users email and firebaseAuth userID
         String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        //set image
+        // Set image
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -109,28 +102,19 @@ public class NavigationActivity extends AppCompatActivity{
         });
         navUserEmail.setText(userEmail);
 
-        //Post Button goes to the userPostActivity page
-//        postButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(NavigationActivity.this, UserPostActivity.class));
-//            }
-//        });
 
-        //userProfile changin
+        // UserProfile picture change
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-
                 startActivityForResult(Intent.createChooser(intent, "Pick an image"), 1);
-
             }
         });
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -172,6 +156,7 @@ public class NavigationActivity extends AppCompatActivity{
         }
     }
 
+    // Uploading the user profile image
     private void uploadImageAndSaveUri(Bitmap bitmap) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         NavigationView mNavigationView = findViewById(R.id.nav_view);
@@ -204,8 +189,8 @@ public class NavigationActivity extends AppCompatActivity{
             }
 
         });
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -214,11 +199,11 @@ public class NavigationActivity extends AppCompatActivity{
         return true;
     }
 
+
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 }
