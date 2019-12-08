@@ -164,15 +164,6 @@ public class NavigationActivity extends AppCompatActivity{
 
                 uploadImageAndSaveUri(bitmap);
 
-                storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        Glide.with(NavigationActivity.this)
-                                .load(task.getResult())
-                                .apply(RequestOptions.circleCropTransform())
-                                .into(imageView);
-                    }
-                });
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -199,7 +190,17 @@ public class NavigationActivity extends AppCompatActivity{
             @Override
             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                 String pathString = "profile_pics/".concat(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(pathString);
                 Toast.makeText(NavigationActivity.this, "Image saved", Toast.LENGTH_LONG).show();
+                storageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        Glide.with(NavigationActivity.this)
+                                .load(task.getResult())
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(imageView);
+                    }
+                });
             }
 
         });
